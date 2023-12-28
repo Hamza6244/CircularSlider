@@ -15,7 +15,7 @@ public class UICircularSliderView: UIView {
     @IBInspectable public var endAngle: CGFloat = 0 { didSet { setNeedsDisplay() } }
     @IBInspectable public var strokeWidth: CGFloat = 0 { didSet { setNeedsDisplay() } }
     @IBInspectable public var clockwise: Bool = true { didSet { setNeedsDisplay() } }
-    @IBInspectable public var lineCap: String = kCALineCapSquare { didSet { setNeedsDisplay() } }
+    @IBInspectable public var lineCap: String = CAShapeLayerLineCap.square.rawValue { didSet { setNeedsDisplay() } }
     @IBInspectable public var bgStrokeColor: UIColor = UIColor.darkGray { didSet { setNeedsDisplay() } }
     @IBInspectable public var fgStrokeColor: UIColor = UIColor.cyan { didSet { setNeedsDisplay() } }
     
@@ -79,7 +79,8 @@ public class UICircularSliderView: UIView {
         placeholderArcShapeLayer?.strokeEnd = placeholderArcCurrentStrokeEnd
         placeholderArcShapeLayer?.strokeColor = bgStrokeColor.cgColor
         placeholderArcShapeLayer?.fillColor = UIColor.clear.cgColor
-        placeholderArcShapeLayer?.lineCap = lineCap
+        placeholderArcShapeLayer?.lineCap = CAShapeLayerLineCap(rawValue: lineCap)
+
         
         layer.addSublayer(placeholderArcShapeLayer!)
     }
@@ -97,7 +98,7 @@ public class UICircularSliderView: UIView {
         progressArcShapeLayer?.strokeEnd = progressArcCurrentStrokeEnd
         progressArcShapeLayer?.strokeColor = fgStrokeColor.cgColor
         progressArcShapeLayer?.fillColor = UIColor.clear.cgColor
-        progressArcShapeLayer?.lineCap = lineCap
+        progressArcShapeLayer?.lineCap = CAShapeLayerLineCap(rawValue: lineCap)
         
         layer.addSublayer(progressArcShapeLayer!)
     }
